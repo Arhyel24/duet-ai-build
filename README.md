@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Duet AI 
+
+## Project Overview
+
+Duet AI is an innovative AI chatbot built on the cutting-edge Gemini AI endpoint, conceived by Yiiming and developed in collaboration with Jace and Enoch. This open-source project leverages the power of Express.js, with plans to migrate to Next.js in the future. Duet AI is designed to provide users with a seamless and personalized conversational experience, while also offering features to save conversations and provide relevant references based on past interactions.
+
+## Licenses and Certifications
+
+Duet AI is licensed under the permissive [MIT License](https://opensource.org/licenses/MIT), allowing for free use, modification, and distribution of the software. Additionally, our project adheres to the following certifications:
+
+* **GDPR Compliance**: Duet AI is designed with data protection in mind, ensuring that user data is handled in accordance with the General Data Protection Regulation (GDPR) guidelines.
+* **Accessibility**: Our chatbot is built with accessibility features to ensure that users with disabilities can interact with the platform easily.
+
+## Technology Stack
+
+* **Frontend**: Currently built using Express.js, with plans to migrate to Next.js for improved performance and scalability.
+* **Backend**: Powered by the Gemini AI endpoint, providing advanced natural language processing capabilities.
+* **Database**: Utilizes a secure and scalable database management system to store user conversations and references.
+
+## Features
+
+* **User Authentication**: Users can create accounts and log in to access their personalized chatbot experience.
+* **Conversation History**: Users can save and view their past conversations with the chatbot.
+* **Reference Provision**: The chatbot provides relevant references based on user input, using machine learning algorithms to improve accuracy over time.
 
 ## Getting Started
 
-First, run the development server:
+To get started with Duet AI, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository: `git clone https://github.com/arhyel24/duet-ai-build.git`
+2. Install dependencies: `npm install`
+3. Start the server: `npm start`
+4. Access the chatbot: `http://localhost:3000`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Duet AI is an open-source project, and we welcome contributions from the community. To contribute, please:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Fork the repository: `git fork https://github.com/arhyel24/duet-ai-build.git`
+2. Create a new branch: `git branch feature/new-feature`
+3. Make changes and commit: `git commit -m "New feature: [brief description]"`
+4. Open a pull request: `git push origin feature/new-feature`
 
-## Learn More
+## Team
 
-To learn more about Next.js, take a look at the following resources:
+* **Yiiming**: Project founder and idea generator
+* **Jace**: Core developer and contributor
+* **Enoch**: Core developer and contributor
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Acknowledgments
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We would like to thank the Gemini AI team for providing the cutting-edge endpoint that powers our chatbot. Additionally, we appreciate the support of the open-source community in helping us improve and expand Duet AI.
 
-## Deploy on Vercel
+## Roadmap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **Short-term**:
+	+ Migrate to Next.js for improved performance and scalability
+	+ Implement additional features, such as sentiment analysis and entity recognition
+* **Long-term**:
+	+ Integrate with other AI services to expand functionality
+	+ Develop a mobile app for on-the-go access to Duet AI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact
+
+For questions, feedback, or contributions, please contact us at [arhyelphilip024@gmail.com](arhyelphilip024@gmail.com). You can also join our community on [GitHub](https://github.com/arhyel24/duet-ai-build) or [Twitter](https://twitter.com/arhyel24).
+
+## Code of Conduct
+
+Duet AI is committed to maintaining a welcoming and inclusive community. Please review our [Code of Conduct](https://github.com/arhyel24/duet-ai-build/blob/main/CODE_OF_CONDUCT.md) before contributing or participating in discussions.
