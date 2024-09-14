@@ -33,7 +33,7 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {},
-      async authorize(credentials): Promise<any> {
+      async authorize(credentials) {
         const { email, password } = credentials as {
           email: string;
           password: string;

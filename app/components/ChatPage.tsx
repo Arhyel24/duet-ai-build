@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import connectToDb from "@/utils/connectDatabase";
 import User from "@/models/userModel";
 
-const ChatPage = async () => {
+const ChatPage = () => {
   const { data: session } = useSession();
   const [username, setUsername] = useState("");
 
@@ -18,10 +18,7 @@ const ChatPage = async () => {
     const user = await User.findOne({ email });
     setUsername(user.username);
   }
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  getUser();
 
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessageProps[]>([]);
