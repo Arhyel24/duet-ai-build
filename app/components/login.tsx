@@ -1,4 +1,5 @@
 "use client";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaGoogle, FaFacebookF, FaEnvelope } from "react-icons/fa";
@@ -7,35 +8,28 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [error, setError] = useState("");
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleInputChange = (event: any) => {
-    const { name, value } = event.target;
-    return setUser((prevInfo) => ({ ...prevInfo, [name]: value }));
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     try {
-      if (!user.email || !user.password) {
+      if (!email || !password) {
         setError("Please fill all the fields");
         setLoading(false);
         return;
       }
 
       const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-      if (!emailRegex.test(user.email)) {
-        setError("Invalid email id");
+      if (!emailRegex.test(email)) {
+        setError("Invalid email address");
         setLoading(false);
         return;
       }
 
       const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
-      if (!passwordRegex.test(user.password)) {
+      if (!passwordRegex.test(password)) {
         setError(
           [
             "Password must be at least 8 characters long",
@@ -48,27 +42,21 @@ const LoginPage = () => {
         return;
       }
 
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
+      const res = await signIn("credentials", {
+        email: email.toLowerCase(),
+        password: password,
+        redirect: false,
       });
-      const data = await response.json();
-      if (data.error) {
-        setError("Invalid email or passwor");
+
+      if (res?.error) {
+        setError("Invalid email or password");
       } else {
-        // Login successful,redirect to home route
-        localStorage.setItem("user", JSON.stringify(data.user));
-        router.push("/");
+        setError("");
+        router.replace("/");
+        // router.push("/userprofile");
       }
     } catch (error) {
       setError("An unexpected error occurred");
-    } finally {
-      setLoading(false);
-      setUser({
-        email: "",
-        password: "",
-      });
 
       // Clear error message after 5 seconds
       setTimeout(() => {
@@ -92,16 +80,14 @@ const LoginPage = () => {
             placeholder="example@123.com"
             name="email"
             className="w-full px-4 py-2 border rounded-md"
-            value={user.email}
-            onChange={handleInputChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type={"password"}
             placeholder="**********"
             name="password"
             className="w-full px-4 py-2 border rounded-md"
-            value={user.password}
-            onChange={handleInputChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           {error && (

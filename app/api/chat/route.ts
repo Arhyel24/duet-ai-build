@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { checkMarks } from "@/utils/checkregex";
 
 // Create an instance of GoogleGenerativeAI with the API key
 const apikey = process.env.GEMINI_KEY as string;
@@ -31,7 +32,9 @@ export const POST = async (req: NextRequest) => {
       const response = result.response;
       const text = await response.text(); // Make sure to use `await` here
 
-      return new NextResponse(JSON.stringify({ message: text }), {
+      const message = checkMarks(text);
+
+      return new NextResponse(JSON.stringify({ message: message }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });

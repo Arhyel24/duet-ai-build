@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // components/ChatMessage.tsx
-interface ChatMessageProps {
+export interface ChatMessageProps {
   sender: "user" | "bot";
   text: string;
 }

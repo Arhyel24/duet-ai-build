@@ -4,45 +4,39 @@ import { useState } from "react";
 import { FaGoogle, FaFacebookF, FaEnvelope } from "react-icons/fa";
 
 const SignUp = () => {
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [error, setError] = useState("");
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleInputChange = (event: any) => {
-    const { name, value } = event.target;
-    return setUser((prevInfo) => ({ ...prevInfo, [name]: value }));
-  };
-
-  const handleInputChange2 = (event: any) => {
-    const { value } = event.target;
-    return setConfirmPassword((prevInfo) => value);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     try {
-      if (!user.email || !user.password) {
+      if (!email || !password || !username || !confirmPassword) {
         setError("Please fill all the fields");
         setLoading(false);
         return;
       }
 
+      if (password !== confirmPassword) {
+        setError("Passwords mismatch");
+        setLoading(false);
+        return;
+      }
+
       const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-      if (!emailRegex.test(user.email)) {
-        setError("Invalid email id");
+      if (!emailRegex.test(email)) {
+        setError("Invalid email address");
         setLoading(false);
         return;
       }
 
       const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
-      if (!passwordRegex.test(user.password)) {
+      if (!passwordRegex.test(password)) {
         setError(
           [
             "Password must be at least 8 characters long",
@@ -50,44 +44,50 @@ const SignUp = () => {
             "one lowercase letter, and one special character.",
           ].join("\n")
         );
-
         setLoading(false);
         return;
       }
 
-      if (user.password !== confirmPassword) {
-        setError("Passwords does not match");
+      const res = await fetch("/api/userExist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const { success } = await res.json();
+
+      if (success) {
+        setError("User already exist");
+        setLoading(false);
         return;
       }
 
-      const response = await fetch("/api/auth/signup", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
+        body: JSON.stringify({ username, email, password }),
       });
       const data = await response.json();
+      console.log(data);
       if (data.error) {
-        setError("Invalid email or passwor");
+        setError("Invalid email or password");
+        setLoading(false);
+        return;
       } else {
-        // Login successful,redirect to home route
-        localStorage.setItem("user", JSON.stringify(data.user));
+        const form = e.target;
+        form.reset();
+        setLoading(false);
         router.push("/");
       }
     } catch (error) {
-      setError("An unexpected error occurred");
-    } finally {
+      setError("User registration failed");
       setLoading(false);
-      setUser({
-        username: "",
-        email: "",
-        password: "",
-      });
-
-      // Clear error message after 5 seconds
-      setTimeout(() => {
-        setError("");
-      }, 5000);
     }
+
+    // Clear error message after 5 seconds
+    setTimeout(() => {
+      setError("");
+    }, 5000);
   };
   return (
     <div className="relative min-h-screen bg-gray-100 flex items-center justify-center">
@@ -105,37 +105,31 @@ const SignUp = () => {
             placeholder="Enter preferred username"
             name="username"
             className="w-full px-4 py-2 border rounded-md"
-            value={user.username}
-            onChange={handleInputChange}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type={"email"}
             placeholder="Enter email"
             name="email"
             className="w-full px-4 py-2 border rounded-md"
-            value={user.email}
-            onChange={handleInputChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type={"password"}
             placeholder="Create Password"
             name="password"
             className="w-full px-4 py-2 border rounded-md"
-            value={user.password}
-            onChange={handleInputChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type={"password"}
             placeholder="Confirm Password"
             name="comfirm-password"
             className="w-full px-4 py-2 border rounded-md"
-            value={confirmPassword}
-            onChange={handleInputChange2}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          {error && (
-            <p className="text-red-500 text-center max-w-sm">{error}</p>
-          )}
+          {error && <p className="text-red-500 max-w-sm">{error}</p>}
           <button
             type="submit"
             className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
