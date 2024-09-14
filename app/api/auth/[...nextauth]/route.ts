@@ -1,12 +1,12 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+// import GoogleProvider from "next-auth/providers/google";
 import connectToDb from "@/utils/connectDatabase";
-import { NextAuthOptions, SessionStrategy } from "next-auth";
+import { SessionStrategy } from "next-auth";
 import User from "@/models/userModel";
 import { verifyPassword } from "@/utils/argon";
 
-export const authOptions: any = {
+export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET!,
   providers: [
     // GoogleProvider({

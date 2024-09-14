@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import ChatMessage, { ChatMessageProps } from "../components/chatMessage";
 import ChatInput from "../components/ChatInput";
 import { signOut, useSession } from "next-auth/react";
@@ -24,7 +23,6 @@ const ChatPage = async () => {
     getUser();
   }, []);
 
-  const router = useRouter();
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessageProps[]>([]);
   const [userInput, setUserinput] = useState("");

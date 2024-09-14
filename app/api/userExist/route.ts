@@ -2,7 +2,7 @@ import User from "@/models/userModel";
 import connectToDb from "@/utils/connectDatabase";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   await connectToDb();
   try {
     // Parse the JSON request body
