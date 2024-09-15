@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest) => {
     const userMessage = await req.json();
     // console.log(userMessage.message);
 
-    const message = userMessage.message;
+    const message: Promise<Array<string>> = userMessage.message;
 
     if (!message) {
       return new NextResponse(
@@ -23,12 +23,14 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    const msg = await message;
+
     try {
       const model = generativeAI.getGenerativeModel({
         model: "gemini-1.5-flash",
       });
 
-      const result = await model.generateContent(message);
+      const result = await model.generateContent(msg);
       const response = result.response;
       const text = await response.text(); // Make sure to use `await` here
 
