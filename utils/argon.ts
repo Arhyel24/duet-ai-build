@@ -15,7 +15,9 @@ const verifyPassword = async (
   hashedPassword: string,
   password: string
 ): Promise<boolean> => {
-  return await argon2.verify(hashedPassword, password, hashOptions);
+  return await argon2.verify(hashedPassword, password, {
+    secret: hashOptions.salt,
+  });
 };
 
 export { hashPassword, verifyPassword };
