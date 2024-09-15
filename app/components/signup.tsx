@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { FaGoogle, FaFacebookF, FaEnvelope } from "react-icons/fa";
 
 const SignUp = () => {
@@ -12,7 +12,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -75,7 +75,6 @@ const SignUp = () => {
         return;
       } else {
         const form = e.target;
-        form.reset();
         setLoading(false);
         router.push("/");
       }

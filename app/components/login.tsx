@@ -1,7 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { FaGoogle, FaFacebookF, FaEnvelope } from "react-icons/fa";
 
 const LoginPage = () => {
@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
