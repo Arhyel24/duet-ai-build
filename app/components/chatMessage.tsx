@@ -4,13 +4,14 @@ import Image from "next/image";
 export interface ChatMessageProps {
   sender: "user" | "bot";
   text: string;
+  time: string;
 }
 
 const myLoader = () => {
   return "https://ptetutorials.com/images/user-profile.png";
 };
 
-const ChatMessage: React.FC<ChatMessageProps> = ({ sender, text }) => {
+const ChatMessage: React.FC<ChatMessageProps> = ({ sender, text, time }) => {
   return (
     <div
       className={`message flex ${
@@ -24,25 +25,29 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ sender, text }) => {
             loader={myLoader}
             src="https://ptetutorials.com/images/user-profile.png"
             alt="bot"
-            width={10}
-            height={10}
-            className="w-10 h-10 rounded-full"
+            width={5}
+            height={5}
+            className="w-7 h-7 rounded-full"
           />
         </div>
       )}
       <div
         className={`text p-2 rounded-lg ${
           sender === "user"
-            ? "bg-blue-500 text-white"
+            ? "bg-blue-500 text-white w-[50%]"
             : "bg-gray-200 text-gray-700"
         } max-w-[70%]`}
       >
-        <div>{text}</div>
-        <div className="text-xs text-gray-500 mt-1">
-          {new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
+        <div
+          className="msg-c text-sm break-words whitespace-pre-wrap"
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
+        <div
+          className={`text-xs italic ${
+            sender === "user" ? "text-gray-200 text-right" : "text-gray-500"
+          } mt-1`}
+        >
+          {time}
         </div>
       </div>
     </div>

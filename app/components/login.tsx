@@ -43,12 +43,12 @@ const LoginPage = () => {
       }
 
       const res = await signIn("credentials", {
-        email: email.toLowerCase(),
+        email: email,
         password: password,
         redirect: false,
       });
-
       if (res?.error) {
+        setLoading(false);
         setError("Invalid email or password");
       } else {
         setError("");

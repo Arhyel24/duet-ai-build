@@ -41,6 +41,8 @@ const authOptions = {
           await connectToDb();
           const user = await User.findOne({ email });
 
+          console.log(user);
+
           if (!user) {
             return null;
           }
@@ -50,9 +52,13 @@ const authOptions = {
             password
           );
 
+          console.log(isPasswordValid);
+
           if (!isPasswordValid) {
             return null;
           }
+
+          console.log(user);
           return user;
         } catch (error) {
           console.log("Error occurred in auth");

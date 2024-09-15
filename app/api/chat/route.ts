@@ -13,6 +13,8 @@ export const POST = async (req: NextRequest) => {
 
     const message: Promise<Array<string>> = userMessage.message;
 
+    // console.log("message:", message);
+
     if (!message) {
       return new NextResponse(
         JSON.stringify({ message: "Message is required" }),
@@ -25,6 +27,8 @@ export const POST = async (req: NextRequest) => {
 
     const msg = await message;
 
+    // console.log("msg:", msg);
+
     try {
       const model = generativeAI.getGenerativeModel({
         model: "gemini-1.5-flash",
@@ -34,9 +38,13 @@ export const POST = async (req: NextRequest) => {
       const response = result.response;
       const text = await response.text(); // Make sure to use `await` here
 
-      const message = checkMarks(text);
+      // console.log("Text", text);
 
-      return new NextResponse(JSON.stringify({ message: message }), {
+      const checkedmessage = await checkMarks(text);
+
+      // console.log("Feedback", checkedmessage);
+
+      return new NextResponse(JSON.stringify(checkedmessage), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });

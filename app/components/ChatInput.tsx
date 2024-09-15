@@ -15,7 +15,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   sendMessage,
 }) => {
   return (
-    <div className="flex mt-4">
+    <div className="flex mt-2 mb-4 w-full ">
       <input
         type="text"
         value={userInput}
