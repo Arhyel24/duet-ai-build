@@ -1,27 +1,30 @@
-# Duet AI 
+# Duet AI
+
+================
+
+<p align="center">An innovative AI chatbot built on the cutting-edge Gemini AI endpoint</p>
+
+<br>
+
+[![MIT License](https://img.shields.io/npm/l/express.svg)](https://opensource.org/licenses/MIT)
+[![GDPR Compliance](https://badgen.now.sh/badge/GDPR%20Compliance/green)](https://www.eugdpr.org/)
+[![Accessibility](https://badgen.now.sh/badge/Accessibility/green)](https://www.w3.org/WAI/standards-guidelines/wcag/)
 
 ## Project Overview
 
-Duet AI is an innovative AI chatbot built on the cutting-edge Gemini AI endpoint, conceived by Yiiming and developed in collaboration with Jace and Enoch. This open-source project leverages the power of Express.js, with plans to migrate to Next.js in the future. Duet AI is designed to provide users with a seamless and personalized conversational experience, while also offering features to save conversations and provide relevant references based on past interactions.
-
-## Licenses and Certifications
-
-Duet AI is licensed under the permissive [MIT License](https://opensource.org/licenses/MIT), allowing for free use, modification, and distribution of the software. Additionally, our project adheres to the following certifications:
-
-* **GDPR Compliance**: Duet AI is designed with data protection in mind, ensuring that user data is handled in accordance with the General Data Protection Regulation (GDPR) guidelines.
-* **Accessibility**: Our chatbot is built with accessibility features to ensure that users with disabilities can interact with the platform easily.
+Duet AI is an open-source project that leverages the power of Express.js, with plans to migrate to Next.js in the future. This chatbot is designed to provide users with a seamless and personalized conversational experience, while also offering features to save conversations and provide relevant references based on past interactions.
 
 ## Technology Stack
 
-* **Frontend**: Currently built using Express.js, with plans to migrate to Next.js for improved performance and scalability.
-* **Backend**: Powered by the Gemini AI endpoint, providing advanced natural language processing capabilities.
-* **Database**: Utilizes a secure and scalable database management system to store user conversations and references.
+- **Frontend**: Currently built using Express.js, with plans to migrate to Next.js for improved performance and scalability.
+- **Backend**: Powered by the Gemini AI endpoint, providing advanced natural language processing capabilities.
+- **Database**: Utilizes a secure and scalable database management system to store user conversations and references.
 
 ## Features
 
-* **User Authentication**: Users can create accounts and log in to access their personalized chatbot experience.
-* **Conversation History**: Users can save and view their past conversations with the chatbot.
-* **Reference Provision**: The chatbot provides relevant references based on user input, using machine learning algorithms to improve accuracy over time.
+- **User Authentication**: Users can create accounts and log in to access their personalized chatbot experience.
+- **Conversation History**: Users can save and view their past conversations with the chatbot.
+- **Reference Provision**: The chatbot provides relevant references based on user input, using machine learning algorithms to improve accuracy over time.
 
 ## Getting Started
 
@@ -43,9 +46,9 @@ Duet AI is an open-source project, and we welcome contributions from the communi
 
 ## Team
 
-* **Yiiming**: Project founder and idea generator
-* **Jace**: Core developer and contributor
-* **Enoch**: Core developer and contributor
+- **Yiiming**: Project founder and idea generator
+- **Jace**: Core developer and contributor
+- **Enoch**: Core developer and contributor
 
 ## Acknowledgments
 
@@ -53,12 +56,15 @@ We would like to thank the Gemini AI team for providing the cutting-edge endpoin
 
 ## Roadmap
 
-* **Short-term**:
-	+ Migrate to Next.js for improved performance and scalability
-	+ Implement additional features, such as sentiment analysis and entity recognition
-* **Long-term**:
-	+ Integrate with other AI services to expand functionality
-	+ Develop a mobile app for on-the-go access to Duet AI
+### Short-term:
+
+- Migrate to Next.js for improved performance and scalability
+- Implement additional features, such as sentiment analysis and entity recognition
+
+### Long-term:
+
+- Integrate with other AI services to expand functionality
+- Develop a mobile app for on-the-go access to Duet AI
 
 ## Contact
 

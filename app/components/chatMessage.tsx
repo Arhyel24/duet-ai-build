@@ -6,6 +6,10 @@ export interface ChatMessageProps {
   text: string;
 }
 
+const myLoader = () => {
+  return "https://ptetutorials.com/images/user-profile.png";
+};
+
 const ChatMessage: React.FC<ChatMessageProps> = ({ sender, text }) => {
   return (
     <div
@@ -16,8 +20,12 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ sender, text }) => {
       {sender === "bot" && (
         <div className="incoming_msg_Image mr-2">
           <Image
+            unoptimized
+            loader={myLoader}
             src="https://ptetutorials.com/images/user-profile.png"
             alt="bot"
+            width={10}
+            height={10}
             className="w-10 h-10 rounded-full"
           />
         </div>

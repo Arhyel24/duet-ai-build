@@ -2,23 +2,31 @@
 import { useState, useEffect, useRef } from "react";
 import ChatMessage, { ChatMessageProps } from "../components/chatMessage";
 import ChatInput from "../components/ChatInput";
-import { signOut, useSession } from "next-auth/react";
-import connectToDb from "@/utils/connectDatabase";
-import User from "@/models/userModel";
+import { signOut } from "next-auth/react";
+// import connectToDb from "@/utils/connectDatabase";
+// import User from "@/models/userModel";
+// import { getServerSession } from "next-auth";
+// import authOptions from "@/utils/AuthOptions";
 
 const ChatPage = () => {
-  const { data: session } = useSession();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("Block");
 
-  const email = session?.user?.email;
+  // async function getUser() {
+  //   await connectToDb();
+  //   const session = await getServerSession(authOptions);
+  //   console.log(session);
+  //   const email = session?.user?.email;
+  //   console.log(email);
+  //   const user = await User.findOne({ email });
+  //   if (user) {
+  //     console.log(user);
 
-  async function getUser() {
-    await connectToDb();
-
-    const user = await User.findOne({ email });
-    setUsername(user.username);
-  }
-  getUser();
+  //     setUsername(user.username);
+  //   } else {
+  //     return;
+  //   }
+  // }
+  // getUser();
 
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessageProps[]>([]);
