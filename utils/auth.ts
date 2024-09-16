@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { hashPassword, verifyPassword } from "../utils/argon";
 import User from "../models/userModel";
+import { hashPassword, verifyPassword } from "./bcryptconfig";
 
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password } = req.body;
@@ -8,7 +8,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!user) {
     return res.status(401).json({ error: "Invalid email or password" });
   }
-  const isValid = await verifyPassword(user.password, password);
+  const isValid = await verifyPassword(password, user.password);
   if (!isValid) {
     return res.status(401).json({ error: "Invalid email or password" });
   }
