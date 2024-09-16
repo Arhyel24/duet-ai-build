@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import connectToDb from "@/utils/connectDatabase";
 import { SessionStrategy } from "next-auth";
 import User from "@/models/userModel";
-import { verifyPassword } from "@/utils/argon";
+import { verifyPassword } from "./bcryptconfig";
 
 const authOptions = {
   secret: process.env.NEXTAUTH_SECRET!,
@@ -48,8 +48,8 @@ const authOptions = {
           }
           const hashedpassword = user.password as string;
           const isPasswordValid = await verifyPassword(
-            hashedpassword,
-            password
+            password,
+            hashedpassword
           );
 
           console.log(isPasswordValid);

@@ -1,5 +1,5 @@
 import User from "@/models/userModel";
-import { hashPassword } from "@/utils/argon";
+import { hashPassword } from "@/utils/bcryptconfig";
 import connectToDb from "@/utils/connectDatabase";
 import { NextRequest, NextResponse } from "next/server";
 

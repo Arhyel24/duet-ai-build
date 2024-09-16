@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "AI chatbot created by Yiiming, Jace and Enoch.",
 };
 
+// "argon2": "^0.41.1",
+
 export default function RootLayout({
   children,
 }: Readonly<{
