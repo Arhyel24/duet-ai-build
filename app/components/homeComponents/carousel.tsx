@@ -1,15 +1,12 @@
 import Image from "next/image";
 import React from "react";
+import img1 from "@/public/images/img-1.jpg";
+import img2 from "@/public/images/img-2.jpg";
+import img3 from "@/public/images/img-3.jpg";
+import img4 from "@/public/images/img-4.jpg";
+import img5 from "@/public/images/img-5.jpg";
 
 const Carousel = () => {
-  const backgrounds: string[] = [
-    "/images/img-1.jpg",
-    "/images/img-2.jpg",
-    "/images/img-3.jpg",
-    "/images/img-4.jpg",
-    "/images/img-5.jpg",
-  ];
-
   return (
     <div
       id="default-carousel"
@@ -23,7 +20,7 @@ const Carousel = () => {
           <Image
             height={500}
             width={700}
-            src="/images/img-5.jpg"
+            src={img5}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
@@ -33,7 +30,7 @@ const Carousel = () => {
           <Image
             height={500}
             width={700}
-            src="/images/img-1.jpg"
+            src={img1}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
@@ -43,7 +40,7 @@ const Carousel = () => {
           <Image
             height={500}
             width={700}
-            src="/images/img-2.jpg"
+            src={img2}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
@@ -53,7 +50,7 @@ const Carousel = () => {
           <Image
             height={500}
             width={700}
-            src="/images/img-3.jpg"
+            src={img3}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
@@ -63,12 +60,11 @@ const Carousel = () => {
           <Image
             height={500}
             width={700}
-            src="/images/img-4.jpg"
+            src={img4}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
         </div>{" "}
-        */
       </div>
       {/* <!-- Slider indicators --> */}
       <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
