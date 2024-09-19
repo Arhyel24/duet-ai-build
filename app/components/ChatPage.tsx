@@ -85,12 +85,23 @@ const ChatPage = () => {
               {session?.user?.name || username}
             </span>
           </p>
-          <button
-            onClick={() => signOut()}
-            className="bg-red-300 hover:bg-red-400 text-white text-xs font-bold px-2 py-1 rounded"
-          >
-            Log out
-          </button>
+          {session ? (
+            <button
+              onClick={() => signOut()}
+              className="bg-red-300 hover:bg-red-400 text-white text-xs font-bold px-2 py-1 rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Log out
+            </button>
+          ) : (
+            <button
+              data-modal-target="authentication-modal"
+              data-modal-toggle="authentication-modal"
+              className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Toggle modal
+            </button>
+          )}
         </div>
         <div
           className="msg_history overflow-y-auto sm:max-h-[600px] md:max-h-[850px] lg:max-h-[900px] xl:max-h-[1000px]  max-h-[350px] p-2"
