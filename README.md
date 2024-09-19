@@ -1,7 +1,5 @@
 # Duet AI
 
-================
-
 <p align="center">An innovative AI chatbot built on the cutting-edge Gemini AI endpoint</p>
 
 <br>

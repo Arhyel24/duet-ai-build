@@ -6,7 +6,7 @@ import User from "@/models/userModel";
 import { verifyPassword } from "./bcryptconfig";
 
 const authOptions = {
-  secret: process.env.NEXTAUTH_SECRET!,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     // GoogleProvider({
     //   clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -41,8 +41,6 @@ const authOptions = {
           await connectToDb();
           const user = await User.findOne({ email });
 
-          console.log(user);
-
           if (!user) {
             return null;
           }
@@ -52,13 +50,10 @@ const authOptions = {
             hashedpassword
           );
 
-          console.log(isPasswordValid);
-
           if (!isPasswordValid) {
             return null;
           }
 
-          console.log(user);
           return user;
         } catch (error) {
           console.log("Error occurred in auth");
@@ -75,11 +70,17 @@ const authOptions = {
   pages: {
     signIn: "/login",
   },
-  // callbacks: {
-  //   async redirect({ url, baseUrl }) {
-  //     return baseUrl + "/userprofile";
-  //   },
-  // },
+  callbacks: {
+    async session({ session }) {
+      await connectToDb();
+      const userEmail = session?.user?.email;
+      const dbUser = await User.findOne({ email: userEmail });
+
+      session.user.name = dbUser.name || "undefined";
+
+      return session;
+    },
+  },
 };
 
 export default authOptions;
