@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import AuthProvider from "@/utils/authProvider";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,7 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-r from-cyan-500 to-blue-500 dark:bg-slate-800`}
       >
         <AuthProvider>{children}</AuthProvider>
-        <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+        <Script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></Script>
       </body>
     </html>
   );
