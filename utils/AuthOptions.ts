@@ -1,3 +1,4 @@
+import bcryptjs from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import GoogleProvider from "next-auth/providers/google";
 import connectToDb from "@/utils/connectDatabase";
@@ -44,10 +45,11 @@ const authOptions = {
           if (!user) {
             return null;
           }
-          const hashedpassword = user.password as string;
-          const isPasswordValid = await verifyPassword(
+          const salt = await bcryptjs.genSalt(10);
+
+          const isPasswordValid = await bcryptjs.compare(
             password,
-            hashedpassword
+            user.password
           );
 
           if (!isPasswordValid) {
@@ -73,10 +75,10 @@ const authOptions = {
   callbacks: {
     async session({ session }) {
       await connectToDb();
-      const userEmail = session?.user?.email;
-      const dbUser = await User.findOne({ email: userEmail });
+      const email = session?.user?.email;
+      const dbUser = await User.findOne({ email });
 
-      session.user.name = dbUser.name || "undefined";
+      session.user.name = dbUser.username || "undefined";
 
       return session;
     },

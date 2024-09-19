@@ -14,23 +14,6 @@ const ChatPage = () => {
 
   const [username, setUsername] = useState("Block");
 
-  // async function getUser() {
-  //   await connectToDb();
-  //   const session = await getServerSession(authOptions);
-  //   console.log(session);
-  //   const email = session?.user?.email;
-  //   console.log(email);
-  //   const user = await User.findOne({ email });
-  //   if (user) {
-  //     console.log(user);
-
-  //     setUsername(user.username);
-  //   } else {
-  //     return;
-  //   }
-  // }
-  // getUser();
-
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessageProps[]>([]);
   const [userInput, setUserinput] = useState("");
@@ -99,7 +82,7 @@ const ChatPage = () => {
           <p className="text-m font-bold text-slate-500 dark:text-slate-400 mb-4">
             Welcome back,{" "}
             <span className="text-orange-500">
-              {session?.user?.email || username}
+              {session?.user?.name || username}
             </span>
           </p>
           <button
