@@ -24,72 +24,22 @@ const Navbar = () => {
         </a>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {session ? (
-            <>
-              <button
-                className="flex text-sm  text-center bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-              >
-                <span className="sr-only">Open user menu</span>
-                <Image
-                  src="https://ptetutorials.com/images/user-profile.png"
-                  width={8}
-                  height={8}
-                  className="w-8 h-8 rounded-full"
-                  alt="user photo"
-                />
-              </button>
-              <div
-                className="z-50 hidden
-            my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                id="user-dropdown"
-              >
-                <div className="px-4 py-3">
-                  <span className="block text-sm  text-gray-900 dark:text-white">
-                    {session?.user?.name}
-                  </span>
-                  <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                    {session?.user?.email}
-                  </span>
-                </div>
-                <ul className="py-2" aria-labelledby="user-menu-button">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Chatbot AI
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </>
+            <button
+              className="flex text-sm  text-center bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              id="user-menu-button"
+              aria-expanded="false"
+              data-dropdown-toggle="user-dropdown"
+              data-dropdown-placement="bottom"
+            >
+              <Image
+                src="https://ptetutorials.com/images/user-profile.png"
+                width={8}
+                height={8}
+                aria-label="Open user menu"
+                className="w-8 h-8 rounded-full"
+                alt="user photo"
+              />
+            </button>
           ) : (
             <a
               href="/login"
@@ -98,6 +48,53 @@ const Navbar = () => {
               Login
             </a>
           )}
+          <div
+            className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+            id="user-dropdown"
+          >
+            <div className="px-4 py-3">
+              <span className="block text-sm  text-gray-900 dark:text-white">
+                {session?.user?.name}
+              </span>
+              <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                {session?.user?.email}
+              </span>
+            </div>
+            <ul className="py-2" aria-labelledby="user-menu-button">
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Chatbot AI
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Sign out
+                </a>
+              </li>
+            </ul>
+          </div>
 
           <button
             data-collapse-toggle="navbar-user"
@@ -118,7 +115,7 @@ const Navbar = () => {
                 stroke="currentColor"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>

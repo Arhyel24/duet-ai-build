@@ -1,4 +1,3 @@
-import Carousel from "../components/homeComponents/carousel";
 import Footer from "../components/homeComponents/Footer";
 import Header from "../components/homeComponents/Header";
 import Navbar from "../components/Navbar";
@@ -8,7 +7,6 @@ const Page = () => {
     <>
       <Navbar />
       <Header />
-      <Carousel />
       <Footer />
     </>
   );
