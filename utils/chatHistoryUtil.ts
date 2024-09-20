@@ -1,12 +1,15 @@
 import User from "@/models/userModel";
+import { Message } from "./types/messageTypes";
+import connectToDb from "./connectDatabase";
 
+await connectToDb();
 const getMessages = async (email: string) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
       return null;
     }
-    return user.chatHistory;
+    return await user.chatHistory;
   } catch (error) {
     throw error;
   }
@@ -55,7 +58,7 @@ const addMessageToThread = async (
       throw new Error(`User not found`);
     }
     const messageThread = user.messages.find(
-      (message) => message.title === title
+      (message: Message) => message.title === title
     );
     if (!messageThread) {
       throw new Error(`Message thread not found`);
@@ -84,7 +87,7 @@ const deleteMessageFromHistory = async (
       throw new Error(`User not found`);
     }
     const messageIndex = user.messages.findIndex(
-      (message) => message._id.toString() === messageId
+      (message: Message) => message._id.toString() === messageId
     );
     if (messageIndex === -1) {
       throw new Error(`Message not found`);

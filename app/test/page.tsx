@@ -1,45 +1,42 @@
 "use client";
 import Navbar from "../components/Navbar";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Messages, { MessageGroupProps } from "../components/newUI/Messages";
+import { getMessages } from "@/utils/chatHistoryUtil";
+import { ChatMessageProps } from "../components/chatMessage";
+import connectToDb from "@/utils/connectDatabase";
+import User from "@/models/userModel";
 
 const Test = () => {
   const chatBoxRef = useRef<HTMLDivElement>(null);
-  const message: MessageGroupProps = {
-    title: "one",
-    messages: [
-      {
-        sender: "user",
-        text: "Hello, how are you?",
-        time: "10:05",
-      },
-      {
-        sender: "bot",
-        text: "I'm doing great, thanks! How can I assist you today?",
-        time: "10:06",
-      },
-      {
-        sender: "user",
-        text: "I need help with my order.",
-        time: "10:07",
-      },
-      {
-        sender: "bot",
-        text: "Sorry to hear that. Can you please provide more details about your order?",
-        time: "10:08",
-      },
-      {
-        sender: "user",
-        text: "I didn't receive my package.",
-        time: "10:09",
-      },
-      {
-        sender: "bot",
-        text: "I apologize for the inconvenience. I've escalated the issue to our shipping team. You should receive an update soon.",
-        time: "10:10",
-      },
-    ],
+  const [message, setMessage] = useState<ChatMessageProps[]>([]);
+  const [titles, setTitles] = useState([]);
+
+  const getMsg = async () => {
+    try {
+      const response = await fetch("/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const { messages, titles } = await response.json();
+      setMessage(messages);
+      setTitles(titles);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+
+  // for (let i = 0; i < 5; i++) {
+  //   const title = Math.random().toString(36).substring(2, 7); // Generate a random title
+  //   console.log(`Running test ${i + 1} with title: ${title}`);
+  //   Demo(title);
+  // }
+
+  useEffect(() => {
+    getMsg();
+  }, []);
 
   useEffect(() => {
     chatBoxRef.current?.scrollTo({
@@ -75,14 +72,9 @@ const Test = () => {
 
           {/* <!-- Contact List --> */}
           <div className="overflow-y-auto h-screen p-3 mb-9 pb-20">
-            <p>Item 1</p>
-            <p>Item 1</p>
-            <p>Item 1</p>
-            <p>Item 1</p>
-            <p>Item 1</p>
-            <p>Item 1</p>
-            <p>Item 1</p>
-            <p>Item 1</p>
+            {titles.map((title, index) => (
+              <p key={index}>{title}</p>
+            ))}
           </div>
         </div>
 
@@ -90,13 +82,13 @@ const Test = () => {
         <div className="flex-1 h-screen">
           {/* <!-- Chat Header --> */}
           <div className="bg-white p-2 text-gray-700 border">
-            <h1 className="text-l font-semibold">{message.title}</h1>
+            <h1 className="text-l font-semibold">{titles[0]}</h1>
           </div>
 
           {/* <!-- Chat Messages --> */}
           <div className="h-4/5 box-border border-2 flex flex-col">
             <div className="flex-1 p-4 overflow-y-auto ">
-              {message.messages.map((msg, index) => (
+              {message.map((msg, index) => (
                 <Messages
                   key={index}
                   sender={msg.sender}
@@ -128,15 +120,15 @@ const Test = () => {
                     />
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       strokeWidth="2"
                       d="M18 1H2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"
                     />
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       strokeWidth="2"
                       d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z"
                     />
